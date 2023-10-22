@@ -1,18 +1,16 @@
 edit a file with nano command
-nano filename -->> replace filename with the file you wish to edit
+nano [filename] -->> replace filename with the file you wish to edit, this file must exist before run this command
 
 create a file with nano command
-nano filename -->> this create a file for you
+nano [filename] -->> this create a file for you
 
 to save -> ctrl + s
 to exit -> ctrl + X
 
-Edit "task3" located in "tryhackme"'s home directory using Nano. What is the flag?
-
-
 -- Downloding Files
 downloading files from the web via http
 
+wget command
 wget https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt
 
 -- Transferring Files From Your Host - SCP (SSH)
@@ -21,14 +19,14 @@ unlike the regular copying files, this command securely copying files between tw
 using SSH protocol to provide both authentication and encryption. 
 
 Copy files & directories from your current system to a remote system
+	ex:
 	scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt
 
 Copy files & directories from a remote system to your current system
+	ex:
 	scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt 
 
 -- Serving Files From Your Host - WEB
-
-
 Ubuntu computers already have Python 3, and it comes with a simple tool called "HTTPServer." This tool lets your computer act as a basic web server. You can use it to share your files, and others can download them using commands like "curl" or "wget."
 
 - to start the module
@@ -47,7 +45,6 @@ to view those files use "ls -a" command.
 - stop the python3 HTTPServer module
 	go to again python3 server module terminal and type,
 	Ctrl + C 
-
 
 -- Viewing Processes
 
@@ -69,26 +66,27 @@ Here are signals you can send when stopping a process:
 	3. SIGSTOP - Stop/suspend a process
 
 
--- How do Processes Start?
+-- How Processes Start?
 The process with an ID of 0 is a process that is started when the system boots. 
 
 Processes start with the help of "init" processes, like systemd in Ubuntu. It's like a supervisor for user programs, ensuring they run smoothly. Each program runs as a "child" of this supervisor, making it easier to manage.
 
 -- Getting Processes/Services to Start on Boot
 
-In this example, we're going to be telling the apache web server to be starting apache manually and then telling the system to launch apache2 on boot.
+In this example, we're going to be telling the apache web server to be starting apache manually and then telling the system to launch apache on boot.
 
 systemctl command
 	this command allows us to interact with the systemd process
 
+	structure of the systemctl command,
 	systemctl [option] [service]
 
 	We can do four options with systemctl:
 
 	1. Start
 	2. Stop	
-	3. Enable
-	4. Disable
+	3. Enable  -> specify when some service should start with the bootup of the system.
+	4. Disable -> specify when some service should not start with the bootup of the system.
 
 	ex: to start up apache,
 	systemctl start apache
@@ -103,6 +101,7 @@ Processes can be in two states: foreground and background. When you run a comman
 When we run the command "echo 'Hi THM'," we expect to see the output right away. But when we add the "&" symbol to the command, it runs in the background, and we only get the process ID instead of the immediate output.
 
 --->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM
+
 
 This is handy for tasks like copying files because it lets us run a command in the background and continue with other tasks without waiting for the file copy to finish.
 
