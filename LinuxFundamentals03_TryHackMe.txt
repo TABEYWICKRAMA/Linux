@@ -99,9 +99,9 @@ systemctl command
 Processes can be in two states: foreground and background. When you run a command in your terminal, like "echo," it runs in the foreground. This means you see its output right there. If a command runs in the background, you won't see its output immediately.
 
 When we run the command "echo 'Hi THM'," we expect to see the output right away. But when we add the "&" symbol to the command, it runs in the background, and we only get the process ID instead of the immediate output.
-
---->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM
-![GitHub Logo](https://github.com/TABEYWICKRAMA/Linux/blob/main/ss1.png)
+ex:
+root@t inux3 :Hi THM
+root@l inux3 :[1] 16889
 
 
 This is handy for tasks like copying files because it lets us run a command in the background and continue with other tasks without waiting for the file copy to finish.
@@ -109,7 +109,13 @@ This is handy for tasks like copying files because it lets us run a command in t
 The same goes for scripts – instead of using the "&" operator, you can press Ctrl + Z on your keyboard to move a process to the background. It's like hitting "pause" on a script or command's execution, as shown below.
 
 --->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM below ss
-
+This will keep on looping until I stop it!
+This will keep on looping until I stop it!
+This will keep on looping until I stop it!
+This will keep on looping until I stop it!
+T^Z                                              <<<<<- this is the place you type ctrl + z
+[1]+ stopped                ./background.sh
+root@linux3:/var/opt#
 
 This script repeats "This will keep on looping until I stop!" until I stop or pause it by pressing Ctrl + Z. Now, my terminal won't be flooded with messages, but I can bring them back by foregrounding the process.
 
