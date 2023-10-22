@@ -1,0 +1,177 @@
+edit a file with nano command
+nano filename -->> replace filename with the file you wish to edit
+
+create a file with nano command
+nano filename -->> this create a file for you
+
+to save -> ctrl + s
+to exit -> ctrl + X
+
+Edit "task3" located in "tryhackme"'s home directory using Nano. What is the flag?
+
+
+-- Downloding Files
+downloading files from the web via http
+
+wget https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt
+
+-- Transferring Files From Your Host - SCP (SSH)
+securely copying files
+unlike the regular copying files, this command securely copying files between two computers. 
+using SSH protocol to provide both authentication and encryption. 
+
+Copy files & directories from your current system to a remote system
+	scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt
+
+Copy files & directories from a remote system to your current system
+	scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt 
+
+-- Serving Files From Your Host - WEB
+
+
+Ubuntu computers already have Python 3, and it comes with a simple tool called "HTTPServer." This tool lets your computer act as a basic web server. You can use it to share your files, and others can download them using commands like "curl" or "wget."
+
+- to start the module
+	python3 -m http.server
+
+- open a new terminal to do this, after starting python3 module downloading files are not possible in that terminal. because we want to download our files as another user. to download files you need to open another terminal. 
+
+- file name is "file" ip address and the port is "127.0.0.1:8000"
+	wget http://127.0.0.1:8000/file
+
+- .file.txt -->> this is a hidden file. reason "."
+
+those files are not show using "ls" command.
+to view those files use "ls -a" command. 
+
+- stop the python3 HTTPServer module
+	go to again python3 server module terminal and type,
+	Ctrl + C 
+
+
+-- Viewing Processes
+
+ps command
+	You can use the "ps" command to see a list of the processes running in your user's session. It shows details like the process status, session ID, CPU usage time, and the name of the program or command being run.
+
+ps aux command
+	To view processes from all users, including system processes, just add "aux" to the "ps" command like this: "ps aux."
+
+top command
+	It shows real-time info about your running processes, updating every 10 seconds. You can also browse the info with arrow keys. It's a great way to understand your system.
+
+-- Managing Processes
+To stop a process, use the "kill" command and specify the process's ID (PID). For example, to stop process 1337, use "kill 1337."
+
+Here are signals you can send when stopping a process:
+	1. SIGTERM - Kill the process, but allow it to do some cleanup tasks beforehand
+	2. SIGKILL - Kill the process - doesn't do any cleanup after the fact
+	3. SIGSTOP - Stop/suspend a process
+
+
+-- How do Processes Start?
+The process with an ID of 0 is a process that is started when the system boots. 
+
+Processes start with the help of "init" processes, like systemd in Ubuntu. It's like a supervisor for user programs, ensuring they run smoothly. Each program runs as a "child" of this supervisor, making it easier to manage.
+
+-- Getting Processes/Services to Start on Boot
+
+In this example, we're going to be telling the apache web server to be starting apache manually and then telling the system to launch apache2 on boot.
+
+systemctl command
+	this command allows us to interact with the systemd process
+
+	systemctl [option] [service]
+
+	We can do four options with systemctl:
+
+	1. Start
+	2. Stop	
+	3. Enable
+	4. Disable
+
+	ex: to start up apache,
+	systemctl start apache
+
+	to start up apache on the boot-up of the system
+	systemctl enable apache
+
+-- An Introduction to Backgrounding and Foregrounding in Linux
+
+Processes can be in two states: foreground and background. When you run a command in your terminal, like "echo," it runs in the foreground. This means you see its output right there. If a command runs in the background, you won't see its output immediately.
+
+When we run the command "echo 'Hi THM'," we expect to see the output right away. But when we add the "&" symbol to the command, it runs in the background, and we only get the process ID instead of the immediate output.
+
+--->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM
+
+This is handy for tasks like copying files because it lets us run a command in the background and continue with other tasks without waiting for the file copy to finish.
+
+The same goes for scripts – instead of using the "&" operator, you can press Ctrl + Z on your keyboard to move a process to the background. It's like hitting "pause" on a script or command's execution, as shown below.
+
+--->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM below ss
+
+
+This script repeats "This will keep on looping until I stop!" until I stop or pause it by pressing Ctrl + Z. Now, my terminal won't be flooded with messages, but I can bring them back by foregrounding the process.
+
+
+-- Foregrounding a process
+
+to see background and foregound process 
+	ps aux
+
+bring a process background to foreground use 
+	fg
+
+-- Automation
+
+Users can schedule actions or tasks to run after the system starts. This includes things like running commands, backing up files, or opening apps like Spotify or Chrome. We'll talk about "cron" and how we control it using "crontabs." Crontab is a process that starts when the system boots, and it helps manage and handle scheduled tasks (cron jobs).
+
+To create a cron process 
+	we should give these values
+
+MIN	What minute to execute at
+HOUR	What hour to execute at
+DOM	What day of the month to execute at
+MON	What month of the year to execute at
+DOW	What day of the week to execute at
+CMD	The actual command that will be executed.
+
+feature of crontabs is that these also support the wildcard or asterisk (*). If we do not wish to provide a value for that specific field, just put a (*) for that field.
+
+ex: 
+	You may wish to backup "cmnatic"'s  "Documents" every 12 hours. We would use the following formatting: 
+
+	0 *12 * * * cp -R /home/cmnatic/Documents /var/backups/
+
+To look at the running crontabs and edit those.
+	crontab -e
+
+
+-- Introducing Packages & Software Repos
+
+When developers want to share their software with the community, they send it to an "apt" repository. If it gets approved, their programs and tools become available to everyone. This highlights two great things about Linux: it's easy for users to access new software, and open-source tools are highly valued.
+
+-- Managing Your Repositories (Adding and Removing)
+
+1. Use the "apt" command to install software on Ubuntu.
+2. "Apt" is part of the package management software, which includes tools to manage packages, sources, and software installation/removal.
+3. Adding repositories is typically done with "add-apt-repository," but you can add them manually.
+4. "Apt" also checks for updates in repositories when you update your system.
+5. Sublime Text is an example of adding a software repository to Ubuntu.
+6. Software integrity is ensured using GPG (Gnu Privacy Guard) keys, which confirm the software's authenticity.
+
+(When adding software, the integrity of what we download is guaranteed by the use of what is called GPG (Gnu Privacy Guard) keys. These keys are essentially a safety check from the developers saying, "here's our software". If the keys do not match up to what your system trusts and what the developers used, then the software will not be downloaded.)
+
+7. If GPG keys don't match, the software won't be downloaded.
+
+ls -l command
+
+The "ls -l" command is used to list files in a directory with detailed information, showing permissions, owner, group, file size, modification date, and file name. It provides a long format view of the directory's contents.
+
+
+
+
+
+
+
+
