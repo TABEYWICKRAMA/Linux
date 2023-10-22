@@ -107,8 +107,7 @@ root@l inux3 :[1] 16889
 This is handy for tasks like copying files because it lets us run a command in the background and continue with other tasks without waiting for the file copy to finish.
 
 The same goes for scripts – instead of using the "&" operator, you can press Ctrl + Z on your keyboard to move a process to the background. It's like hitting "pause" on a script or command's execution, as shown below.
-
---->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM below ss
+ex:
 This will keep on looping until I stop it!
 This will keep on looping until I stop it!
 This will keep on looping until I stop it!
@@ -119,7 +118,6 @@ root@linux3:/var/opt#
 
 This script repeats "This will keep on looping until I stop!" until I stop or pause it by pressing Ctrl + Z. Now, my terminal won't be flooded with messages, but I can bring them back by foregrounding the process.
 
-
 -- Foregrounding a process
 
 to see background and foregound process 
@@ -129,7 +127,6 @@ bring a process background to foreground use
 	fg
 
 -- Automation
-
 Users can schedule actions or tasks to run after the system starts. This includes things like running commands, backing up files, or opening apps like Spotify or Chrome. We'll talk about "cron" and how we control it using "crontabs." Crontab is a process that starts when the system boots, and it helps manage and handle scheduled tasks (cron jobs).
 
 To create a cron process 
@@ -152,7 +149,6 @@ ex:
 To look at the running crontabs and edit those.
 	crontab -e
 
-
 -- Introducing Packages & Software Repos
 
 When developers want to share their software with the community, they send it to an "apt" repository. If it gets approved, their programs and tools become available to everyone. This highlights two great things about Linux: it's easy for users to access new software, and open-source tools are highly valued.
@@ -165,19 +161,11 @@ When developers want to share their software with the community, they send it to
 4. "Apt" also checks for updates in repositories when you update your system.
 5. Sublime Text is an example of adding a software repository to Ubuntu.
 6. Software integrity is ensured using GPG (Gnu Privacy Guard) keys, which confirm the software's authenticity.
-
-(When adding software, the integrity of what we download is guaranteed by the use of what is called GPG (Gnu Privacy Guard) keys. These keys are essentially a safety check from the developers saying, "here's our software". If the keys do not match up to what your system trusts and what the developers used, then the software will not be downloaded.)
-
 7. If GPG keys don't match, the software won't be downloaded.
 
+explain a bit more 6 point,
+(When adding software, the integrity of what we download is guaranteed by the use of what is called GPG (Gnu Privacy Guard) keys. These keys are essentially a safety check from the developers saying, "here's our software". If the keys do not match up to what your system trusts and what the developers used, then the software will not be downloaded.)
+
+
 ls -l command
-
 The "ls -l" command is used to list files in a directory with detailed information, showing permissions, owner, group, file size, modification date, and file name. It provides a long format view of the directory's contents.
-
-
-
-
-
-
-
-
