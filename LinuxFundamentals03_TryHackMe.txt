@@ -101,6 +101,7 @@ Processes can be in two states: foreground and background. When you run a comman
 When we run the command "echo 'Hi THM'," we expect to see the output right away. But when we add the "&" symbol to the command, it runs in the background, and we only get the process ID instead of the immediate output.
 
 --->>>>>>>>>>>>>>>>>>>>>>>>> SS echo hi THM
+![GitHub Logo](https://github.com/TABEYWICKRAMA/Linux/blob/main/ss1.png)
 
 
 This is handy for tasks like copying files because it lets us run a command in the background and continue with other tasks without waiting for the file copy to finish.
